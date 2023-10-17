@@ -17,6 +17,8 @@
 ## Content
 First evaluative project of the discipline with the aim of working on the concepts of list, view manipulation and database integration.
 
+The project is a simple list application used to split expenses between participants.
+
 ### :link: [ADS Course Information Access](https://scl.ifsp.edu.br/index.php/cursos.html?id=116:ads&catid=61)
 
 
