@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/nomeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pagador"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/valorPagoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valor pago: R$ "
+        android:textSize="20sp" />
+
+
+</LinearLayout>

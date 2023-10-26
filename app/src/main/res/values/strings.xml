@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SplitTheBill</string>
+    <string name="lista_pagadores">Lista de pagadores</string>
+    <string name="pagador">Pagador</string>
+    <string name="name">Nome</string>
+    <string name="item_compra">Compras</string>
+    <string name="valor_pago">Valor Pago</string>
+    <string name="save">Salvar</string>
+    <string name="add_payer">Add pagador</string>
+    <string name="remover_payer">Remover pagador</string>
+    <string name="editar_payer">Atualizar gastos</string>
 </resources>
