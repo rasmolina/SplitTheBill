@@ -1,9 +1,9 @@
 package br.edu.scl.ifsp.ads.splitthebill.model
 
 object Constant {
-    const val EXTRA_CONTACT = "EXTRA_CONTACT"
+    const val EXTRA_PAYER = "EXTRA_PAYER"
 
-    const val VIEW_CONTACT = "VIEW_CONTACT"
+    const val VIEW_PAYER = "VIEW_PAYER"
 
     const val INVALID_CONTACT_ID = -1
 }
