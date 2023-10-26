@@ -7,6 +7,7 @@
     <string name="valor_pago">Valor Pago</string>
     <string name="save">Salvar</string>
     <string name="add_payer">Add pagador</string>
+    <string name="split_bill">Calcular divisão</string>
     <string name="remover_payer">Remover pagador</string>
     <string name="editar_payer">Atualizar gastos</string>
 </resources>

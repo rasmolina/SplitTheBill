@@ -3,9 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
     android:id="@+id/addPayerMi"
-    android:icon="@drawable/ic_add"
+    android:icon="@drawable/payer"
     android:title="@string/add_payer"
     app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/splitBillMi"
+        android:icon="@drawable/split"
+        android:title="@string/split_bill"
+        app:showAsAction="ifRoom" />
 
 
 </menu>
