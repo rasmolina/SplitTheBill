@@ -1,7 +1,6 @@
 package br.edu.scl.ifsp.ads.splitthebill.controller
 
 import android.os.AsyncTask
-import androidx.loader.content.AsyncTaskLoader
 import androidx.room.Room
 import br.edu.scl.ifsp.ads.splitthebill.model.Payer
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerRoomDao
