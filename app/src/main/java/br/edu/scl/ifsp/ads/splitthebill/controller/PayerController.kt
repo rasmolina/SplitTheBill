@@ -12,7 +12,7 @@ class PayerController(mainActivity: MainActivity) {
     fun getPayer(id: Int) = payerDaoImpl.retrievePayer(id)
     fun getPayers() = payerDaoImpl.retrievePayers()
     fun editPayer(payer: Payer) = payerDaoImpl.updatePayer(payer)
-    //fun removePayer(id: Int) = payerDaoImpl.deletePayer(id)
+    fun removePayer(id: Int) = payerDaoImpl.deletePayer(id)
 
 
 }

@@ -24,7 +24,7 @@ class PayerDaoSQLite (context: Context): PayerDao {
         "$ID_COLUMN INTEGER PRIMARY KEY AUTOINCREMENT, " +
         "$NAME_COLUMN TEXT NOT NULL, " +
         "$ITEMCOMPRA_COLUMN TEXT NOT NULL, " +
-        "$VALORPAGO_COLUMN TEXT NOT NULL);"
+        "$VALORPAGO_COLUMN DOUBLE NOT NULL);"
     }
 
     //Referência pro BD
@@ -69,10 +69,10 @@ class PayerDaoSQLite (context: Context): PayerDao {
         arrayOf(payer.id.toString())
     )
 
-    override fun deletePayer(payer: Payer) = payersSqliteDatabase.delete(
+    override fun deletePayer(id: Int) = payersSqliteDatabase.delete(
         PAYER_TABLE,
         "$ID_COLUMN = ?",
-        arrayOf(payer.id.toString())
+        arrayOf(id.toString())
     )
 
 

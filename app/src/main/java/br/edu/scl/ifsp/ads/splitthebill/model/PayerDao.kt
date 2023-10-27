@@ -10,6 +10,6 @@ interface PayerDao {
 
     fun updatePayer(payer: Payer): Int
 
-    fun deletePayer(payer: Payer): Int
+    fun deletePayer(id: Int): Int
 
 }

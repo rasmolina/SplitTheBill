@@ -5,5 +5,5 @@ object Constant {
 
     const val VIEW_PAYER = "VIEW_PAYER"
 
-    const val INVALID_CONTACT_ID = -1
+    const val INVALID_PAYER_ID = -1
 }
