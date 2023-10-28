@@ -15,9 +15,14 @@
 :calendar: Developed at 2023 second half
 
 ## Content
-First evaluative project of the discipline with the aim of working on the concepts of list, view manipulation and database integration.
+Primeiro projeto avaliativo da disciplina de Programação para Dispositivos Móveis.
 
-The project is a simple list application used to split expenses between participants.
+Neste projeto foi trabalhado a criação de um aplicativo utilizando listas para facilitar a divisão de gastos entre as pessoas. Pode-se cadastrar uma pessoa, os itens pagos por ela e o valor total gasto. Há uma funcionalidade para fazer a divisão de custos entre as pessoas indicando quanto cada um deve pagar ou receber.
+
+Para melhor organização o projeto foi estruturado na arquitetura MVC (Model - View - Controller). Foram trabalhos os conceitos de View Binding, Intents para comunicação entre as telas e a criação de um adaptador para envio/recebimento de dados.
+
+Foram utilizados os plugins Kotlin Parcelize para o envio de dados em fluxo, Kotlin Single Processor para reconhecimento das anotações Java e Kotlin Room que é uma biblioteca de persistência para BD SQLite.
+
 
 ### :link: [ADS Course Information Access](https://scl.ifsp.edu.br/index.php/cursos.html?id=116:ads&catid=61)
 
