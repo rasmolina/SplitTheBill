@@ -5,7 +5,7 @@ import br.edu.scl.ifsp.ads.splitthebill.model.PayerDao
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerDaoSQLite
 import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
-class PayerController(mainActivity: MainActivity) {
+public class PayerController(mainActivity: MainActivity) {
     private val payerDaoImpl: PayerDao = PayerDaoSQLite(mainActivity)
 
     fun insertPayer(payer: Payer) = payerDaoImpl.createPayer(payer)

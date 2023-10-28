@@ -2,7 +2,6 @@ package br.edu.scl.ifsp.ads.splitthebill.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.scl.ifsp.ads.splitthebill.databinding.ActivityPayerBinding
@@ -27,6 +26,7 @@ class PayerActivity : AppCompatActivity() {
         receivedPayer?.let { _receivedPayer ->
             with(apb){
                 nameEt.setText(_receivedPayer.name)
+                nameEt.isEnabled = false
                 itemCompraEt.setText(_receivedPayer.itemCompra)
                 valorPagoEt.setText(_receivedPayer.valorPago.toString())
             }

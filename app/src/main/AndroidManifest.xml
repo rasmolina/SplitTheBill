@@ -16,6 +16,10 @@
             android:name=".view.PayerActivity"
             android:exported="false" />
         <activity
+            android:name=".view.BillsActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import br.edu.scl.ifsp.ads.splitthebill.R
 import br.edu.scl.ifsp.ads.splitthebill.adapter.PayerAdapter
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             payerList)
     }
 
-    private lateinit var carl: ActivityResultLauncher<Intent>
+    private lateinit var parl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         originalPayerList.addAll(payerList)
 
-        carl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        parl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result -> if(result.resultCode == RESULT_OK){
                 val payer = result.data?.getParcelableExtra<Payer>(EXTRA_PAYER)
             payer?.let { _payer ->
@@ -84,10 +83,13 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.addPayerMi -> {
-                carl.launch(Intent(this,PayerActivity::class.java))
+                parl.launch(Intent(this,PayerActivity::class.java))
                 true
-            } else -> false
-            //Adicionar chamada para tela splitBill
+            }
+            R.id.splitBillMi ->{
+                parl.launch((Intent(this,BillsActivity::class.java)))
+                true
+            }else -> false
         }
     }
 
@@ -113,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                 val payer = payerList[position]
                 val editPayerIntent = Intent(this, PayerActivity::class.java)
                 editPayerIntent.putExtra(EXTRA_PAYER,payer)
-                carl.launch(editPayerIntent)
+                parl.launch(editPayerIntent)
                 true} else -> {false}
         }
     }

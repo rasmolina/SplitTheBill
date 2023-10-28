@@ -14,8 +14,6 @@ interface PayerRoomDao {
         private const val PAYER_TABLE = "payer"
         private const val ID_COLUMN = "id"
         private const val NAME_COLUMN = "name"
-        private const val ITEM_COLUMN = "item_compra"
-        private const val VALOR_COLUMN = "valor_pago"
     }
 
     @Insert
@@ -24,7 +22,7 @@ interface PayerRoomDao {
     @Query("SELECT * FROM $PAYER_TABLE WHERE $ID_COLUMN = :id")
     fun retrievePayer(id: Int): Payer?
 
-    @Query("SELECT * FROM $PAYER_TABLE ORNAME_CO$NAME_COLUMN")
+    @Query("SELECT * FROM $PAYER_TABLE ORDER BY $NAME_COLUMN")
     fun retrievePayers(): MutableList<Payer>
 
     @Update

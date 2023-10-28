@@ -6,57 +6,38 @@ import br.edu.scl.ifsp.ads.splitthebill.model.Payer
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerRoomDao
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerRoomDao.Companion.PAYER_DATABASE_FILE
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerRoomDaoDatabase
-import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
+import br.edu.scl.ifsp.ads.splitthebill.view.BillsActivity
 
-class PayerRoomController(private val mainActivity: MainActivity) {
+
+class BillsRoomController(private val billsActivity: BillsActivity) {
     private val payerDaoImpl: PayerRoomDao by lazy {
         Room.databaseBuilder(
-            mainActivity,
+            billsActivity,
             PayerRoomDaoDatabase::class.java,
             PAYER_DATABASE_FILE
         ).build().getPayerRoomDao()
     }
 
-    fun insertPayer(payer: Payer){
+    private fun calculaGastoTotal(payer: Payer){
+        Thread{
+
+        }
+
+    }
+
+    private fun calculaDivisao(payer: Payer){
         Thread{
             payerDaoImpl.createPayer(payer)
             getPayers()
         }.start()
     }
 
-    fun getPayer(id: Int) = payerDaoImpl.retrievePayer(id)
 
     private fun getPayers(){
         object: AsyncTask<Unit, Unit, MutableList<Payer>>(){
             override fun doInBackground(vararg params: Unit?): MutableList<Payer> {
                 return payerDaoImpl.retrievePayers()
             }
-
-            override fun onPostExecute(result: MutableList<Payer>?) {
-                super.onPostExecute(result)
-                result?.also {
-                    mainActivity.updatePayerList(result)
-                }
-            }
         }.execute()
     }
-
-    fun editPayer(payer: Payer){
-        Thread{
-            payerDaoImpl.updatePayer(payer)
-            getPayers()
-        }.start()
-    }
-
-    fun removePayer(payer: Payer){
-        Thread{
-            payerDaoImpl.deletePayer(payer)
-            getPayers()
-        }.start()
-    }
-
-
-
-
-
 }
