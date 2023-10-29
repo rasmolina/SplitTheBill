@@ -2,6 +2,8 @@ package br.edu.scl.ifsp.ads.splitthebill.controller
 
 import android.os.AsyncTask
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import br.edu.scl.ifsp.ads.splitthebill.model.Payer
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerRoomDao
 import br.edu.scl.ifsp.ads.splitthebill.model.PayerRoomDao.Companion.PAYER_DATABASE_FILE

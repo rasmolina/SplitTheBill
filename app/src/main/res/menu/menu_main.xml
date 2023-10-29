@@ -7,11 +7,6 @@
     android:title="@string/add_payer"
     app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/splitBillMi"
-        android:icon="@drawable/split"
-        android:title="@string/split_bill"
-        app:showAsAction="ifRoom" />
 
 
 </menu>

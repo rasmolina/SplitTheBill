@@ -31,15 +31,23 @@ class MainActivity : AppCompatActivity() {
         PayerRoomController(this)
     }
 
-    private val originalPayerList: MutableList<Payer> = mutableListOf()
-
-    private val payerAdapter: PayerAdapter by lazy {
-        PayerAdapter(
-            this,
-            payerList)
-    }
+    private lateinit var payerAdapter: PayerAdapter
 
     private lateinit var parl: ActivityResultLauncher<Intent>
+    private fun atualizarBalanco(){
+        var totalGeral = 0.0
+        for (i in 0 until payerList.size){
+            totalGeral += payerList[i].valorPago
+        }
+
+        val totalPorPessoa = totalGeral / payerList.size
+
+        for(i in 0 until payerList.size){
+            payerList[i].balanco = (totalPorPessoa - payerList[i].valorPago).toString()
+        }
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +55,14 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(amb.toolbarIn.toolbar)
 
+        payerAdapter = PayerAdapter(this,payerList)
         amb.payersListView.adapter = payerAdapter
 
-        originalPayerList.addAll(payerList)
+        payerAdapter.notifyDataSetChanged()
 
         parl = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            result -> if(result.resultCode == RESULT_OK){
-                val payer = result.data?.getParcelableExtra<Payer>(EXTRA_PAYER)
+                result -> if(result.resultCode == RESULT_OK){
+            val payer = result.data?.getParcelableExtra<Payer>(EXTRA_PAYER)
             payer?.let { _payer ->
                 if(payerList.any {it.id == _payer.id}){
                     payerController.editPayer(_payer)
@@ -63,6 +72,7 @@ class MainActivity : AppCompatActivity() {
             }
             }
         }
+
 
         amb.payersListView.setOnItemClickListener {parent, view, position, id ->
             val payer = payerList[position]
@@ -75,6 +85,11 @@ class MainActivity : AppCompatActivity() {
         registerForContextMenu(amb.payersListView)
     } //Fim da onCreate
 
+    override fun onResume() {
+        super.onResume()
+        if(payerList.size > 0) atualizarBalanco()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main,menu)
         return true
@@ -84,10 +99,6 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.addPayerMi -> {
                 parl.launch(Intent(this,PayerActivity::class.java))
-                true
-            }
-            R.id.splitBillMi ->{
-                parl.launch((Intent(this,BillsActivity::class.java)))
                 true
             }else -> false
         }

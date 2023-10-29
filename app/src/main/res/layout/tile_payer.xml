@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pagador"
+        android:textStyle="bold"
         android:textSize="30sp" />
 
     <TextView
@@ -17,6 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Valor pago: R$ "
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/balanceteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Total a pagar/receber: R$"
         android:textSize="20sp" />
 
 

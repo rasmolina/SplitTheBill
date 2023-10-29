@@ -29,6 +29,7 @@ class PayerActivity : AppCompatActivity() {
                 nameEt.isEnabled = false
                 itemCompraEt.setText(_receivedPayer.itemCompra)
                 valorPagoEt.setText(_receivedPayer.valorPago.toString())
+                balancoEt.setText(_receivedPayer.balanco)
             }
 
             val viewPayer = intent.getBooleanExtra(VIEW_PAYER,false)
@@ -37,18 +38,20 @@ class PayerActivity : AppCompatActivity() {
                     nameEt.isEnabled = false
                     itemCompraEt.isEnabled = false
                     valorPagoEt.isEnabled = false
+                    balancoEt.isEnabled = false
                     saveBt.visibility = View.GONE
                 }
             }
         }
 
-        with(apb){
-            saveBt.setOnClickListener {
-                val payer: Payer = Payer(
+
+            apb.saveBt.setOnClickListener {
+                val payer = Payer(
                     id = receivedPayer?.id,
-                    nameEt.text.toString(),
-                    itemCompraEt.text.toString(),
-                    valorPagoEt.text.toString().toDouble()
+                    name = apb.nameEt.text.toString(),
+                    itemCompra = apb.itemCompraEt.text.toString(),
+                    valorPago = apb.valorPagoEt.text.toString().toDouble(),
+                    balanco = apb.balancoEt.text.toString()
                 )
 
                 val resultIntent = Intent()
@@ -58,7 +61,7 @@ class PayerActivity : AppCompatActivity() {
             }
         }
 
-    }
+
 
 
 

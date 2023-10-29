@@ -29,7 +29,6 @@
 
     <EditText
         android:id="@+id/itemCompraEt"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -41,7 +40,6 @@
 
     <EditText
         android:id="@+id/valorPagoEt"
-
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -51,6 +49,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemCompraEt" />
 
+    <EditText
+        android:id="@+id/balancoEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Balanço"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valorPagoEt" />
 
     <Button
         android:id="@+id/saveBt"
