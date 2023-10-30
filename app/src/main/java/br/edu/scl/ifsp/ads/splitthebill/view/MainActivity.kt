@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var payerAdapter: PayerAdapter
 
     private lateinit var parl: ActivityResultLauncher<Intent>
+
     private fun atualizarBalanco(){
         var totalGeral = 0.0
         for (i in 0 until payerList.size){
@@ -43,10 +44,9 @@ class MainActivity : AppCompatActivity() {
         val totalPorPessoa = totalGeral / payerList.size
 
         for(i in 0 until payerList.size){
-            payerList[i].balanco = (totalPorPessoa - payerList[i].valorPago).toString()
+            payerList[i].balanco = (totalPorPessoa - payerList[i].valorPago)
         }
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,11 +83,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         registerForContextMenu(amb.payersListView)
+
     } //Fim da onCreate
 
     override fun onResume() {
         super.onResume()
-        if(payerList.size > 0) atualizarBalanco()
+        if(payerList.size > 0){
+            atualizarBalanco()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -120,6 +123,8 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.removePayerMi -> {
                 payerController.removePayer(payer)
+                atualizarBalanco()
+                payerAdapter.notifyDataSetChanged()
                 Toast.makeText(this, "Pagador removido!", Toast.LENGTH_SHORT).show()
                 true}
             R.id.editPayerMi -> {

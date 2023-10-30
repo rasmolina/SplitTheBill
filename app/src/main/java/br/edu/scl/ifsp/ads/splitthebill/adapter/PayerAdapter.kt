@@ -41,14 +41,14 @@ class PayerAdapter ( context: Context,
 
         with(payerTileView?.tag as TilePayerHolder) {
             nameTextView.text = payer.name
-            valorPagoTextView.text = "Gastou: R$ " + payer.valorPago
-            if (payer.balanco.equals("")){ payer.balanco = "0.0"}else{payer.balanco = payer.balanco}
-            if (payer.balanco.toDouble() < 0) {
-                payer.balanco = (payer.balanco.toDouble() * -1).toString()
-                balanceteTextView.text = "Total a receber: R$ " + payer.balanco
+            valorPagoTextView.text = "Gastou: R$ " + payer.valorPago.toString()
+
+            if (payer.balanco < 0.0) {
+                payer.balanco = (payer.balanco * -1)
+                balanceteTextView.text = "Total a receber: R$ " + payer.balanco.toString()
                 balanceteTextView.setTextColor(ContextCompat.getColor(context, R.color.colorPositive))
             } else {
-                balanceteTextView.text = "Total a pagar: R$ " + payer.balanco
+                balanceteTextView.text = "Total a pagar: R$ " + payer.balanco.toString()
                 balanceteTextView.setTextColor(ContextCompat.getColor(context, R.color.colorNegative))
             }
 

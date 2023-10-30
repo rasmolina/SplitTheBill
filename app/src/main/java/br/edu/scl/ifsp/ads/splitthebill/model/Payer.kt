@@ -19,5 +19,5 @@ data class Payer (
     @NonNull
     var valorPago: Double,
     @NonNull
-    var balanco: String
+    var balanco: Double
 ) : Parcelable

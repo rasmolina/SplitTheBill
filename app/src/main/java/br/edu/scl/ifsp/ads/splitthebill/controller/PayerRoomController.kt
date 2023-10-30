@@ -12,11 +12,26 @@ import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
 class PayerRoomController(private val mainActivity: MainActivity) {
     private val payerDaoImpl: PayerRoomDao by lazy {
+        val MIGRATION_3_4: Migration = object : Migration(3,4){
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("PRAGMA foreign_keys=off;")
+                db.execSQL("DROP TABLE payer")
+                db.execSQL("CREATE TABLE IF NOT EXISTS Payer (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," + // Chave primária autoincrement
+                        "name TEXT NOT NULL," + // Coluna de texto não nulo
+                        "itemCompra TEXT NOT NULL," + // Coluna de texto não nulo
+                        "valorPago REAL NOT NULL," + // Coluna real (double) não nulo
+                        "balanco REAL NOT NULL" + // Coluna real (double) não nulo
+                        ");")
+            }
+    }
+
         Room.databaseBuilder(
             mainActivity,
             PayerRoomDaoDatabase::class.java,
             PAYER_DATABASE_FILE
-        ).build().getPayerRoomDao()
+        ).addMigrations(MIGRATION_3_4)
+            .build().getPayerRoomDao()
     }
 
     fun insertPayer(payer: Payer){
