@@ -31,23 +31,14 @@ class MainActivity : AppCompatActivity() {
         PayerRoomController(this)
     }
 
-    private lateinit var payerAdapter: PayerAdapter
-
-    private lateinit var parl: ActivityResultLauncher<Intent>
-
-    private fun atualizarBalanco(){
-        var totalGeral = 0.0
-        for (i in 0 until payerList.size){
-            totalGeral += payerList[i].valorPago
-        }
-
-        val totalPorPessoa = totalGeral / payerList.size
-
-        for(i in 0 until payerList.size){
-            payerList[i].balanco = (totalPorPessoa - payerList[i].valorPago)
-        }
+    private val payerAdapter: PayerAdapter by lazy {
+        PayerAdapter(
+            this,
+            payerList
+        )
     }
 
+    private lateinit var parl: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(amb.toolbarIn.toolbar)
 
-        payerAdapter = PayerAdapter(this,payerList)
         amb.payersListView.adapter = payerAdapter
 
         payerAdapter.notifyDataSetChanged()
@@ -85,13 +75,6 @@ class MainActivity : AppCompatActivity() {
         registerForContextMenu(amb.payersListView)
 
     } //Fim da onCreate
-
-    override fun onResume() {
-        super.onResume()
-        if(payerList.size > 0){
-            atualizarBalanco()
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main,menu)
@@ -123,7 +106,6 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.removePayerMi -> {
                 payerController.removePayer(payer)
-                atualizarBalanco()
                 payerAdapter.notifyDataSetChanged()
                 Toast.makeText(this, "Pagador removido!", Toast.LENGTH_SHORT).show()
                 true}

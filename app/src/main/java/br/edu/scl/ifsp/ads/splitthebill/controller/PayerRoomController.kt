@@ -34,10 +34,13 @@ class PayerRoomController(private val mainActivity: MainActivity) {
             .build().getPayerRoomDao()
     }
 
+    val payerList: MutableList<Payer> = mutableListOf()
+
     fun insertPayer(payer: Payer){
         Thread{
             payerDaoImpl.createPayer(payer)
             getPayers()
+            atualizarBalanco()
         }.start()
     }
 
@@ -62,6 +65,7 @@ class PayerRoomController(private val mainActivity: MainActivity) {
         Thread{
             payerDaoImpl.updatePayer(payer)
             getPayers()
+            atualizarBalanco()
         }.start()
     }
 
@@ -69,7 +73,21 @@ class PayerRoomController(private val mainActivity: MainActivity) {
         Thread{
             payerDaoImpl.deletePayer(payer)
             getPayers()
+            atualizarBalanco()
         }.start()
+    }
+
+    fun atualizarBalanco(){
+
+        var totalGeral = payerList.sumByDouble { it.valorPago }
+        val qtdPessoas = payerList.size
+        val totalPorPessoa = totalGeral / qtdPessoas
+        payerList.forEach{ payer ->
+            payer.balanco = payer.valorPago - totalPorPessoa
+        }
+
+        mainActivity.updatePayerList(payerList)
+
     }
 
 
