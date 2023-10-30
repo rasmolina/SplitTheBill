@@ -17,11 +17,11 @@ class PayerRoomController(private val mainActivity: MainActivity) {
                 db.execSQL("PRAGMA foreign_keys=off;")
                 db.execSQL("DROP TABLE payer")
                 db.execSQL("CREATE TABLE IF NOT EXISTS Payer (" +
-                        "id INTEGER PRIMARY KEY AUTOINCREMENT," + // Chave primária autoincrement
-                        "name TEXT NOT NULL," + // Coluna de texto não nulo
-                        "itemCompra TEXT NOT NULL," + // Coluna de texto não nulo
-                        "valorPago REAL NOT NULL," + // Coluna real (double) não nulo
-                        "balanco REAL NOT NULL" + // Coluna real (double) não nulo
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "name TEXT NOT NULL," +
+                        "itemCompra TEXT NOT NULL," +
+                        "valorPago REAL NOT NULL," +
+                        "balanco REAL NOT NULL" +
                         ");")
             }
     }
@@ -55,7 +55,10 @@ class PayerRoomController(private val mainActivity: MainActivity) {
             override fun onPostExecute(result: MutableList<Payer>?) {
                 super.onPostExecute(result)
                 result?.also {
+                    mainActivity.runOnUiThread {
                     mainActivity.updatePayerList(result)
+                    }
+
                 }
             }
         }.execute()
@@ -78,15 +81,18 @@ class PayerRoomController(private val mainActivity: MainActivity) {
     }
 
     fun atualizarBalanco(){
+        val listaAtual = payerDaoImpl.retrievePayers()
 
-        var totalGeral = payerList.sumByDouble { it.valorPago }
-        val qtdPessoas = payerList.size
+        var totalGeral = listaAtual.sumByDouble { it.valorPago }
+        val qtdPessoas = listaAtual.size
         val totalPorPessoa = totalGeral / qtdPessoas
-        payerList.forEach{ payer ->
+        listaAtual.forEach{ payer ->
             payer.balanco = payer.valorPago - totalPorPessoa
         }
 
-        mainActivity.updatePayerList(payerList)
+        mainActivity.runOnUiThread {
+            mainActivity.updatePayerList(listaAtual)
+        }
 
     }
 
