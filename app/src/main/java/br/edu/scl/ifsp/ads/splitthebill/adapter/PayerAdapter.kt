@@ -45,11 +45,13 @@ class PayerAdapter ( context: Context,
 
             if (payer.balanco < 0.0) {
                 payer.balanco = (payer.balanco * -1)
-                balanceteTextView.text = "Total a receber: R$ " + payer.balanco.toString()
-                balanceteTextView.setTextColor(ContextCompat.getColor(context, R.color.colorPositive))
-            } else {
                 balanceteTextView.text = "Total a pagar: R$ " + payer.balanco.toString()
                 balanceteTextView.setTextColor(ContextCompat.getColor(context, R.color.colorNegative))
+
+            } else {
+                balanceteTextView.text = "Total a receber: R$ " + payer.balanco.toString()
+                balanceteTextView.setTextColor(ContextCompat.getColor(context, R.color.colorPositive))
+
             }
 
             return payerTileView
