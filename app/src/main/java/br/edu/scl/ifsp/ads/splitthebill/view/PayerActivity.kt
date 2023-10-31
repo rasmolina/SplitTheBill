@@ -50,6 +50,7 @@ class PayerActivity : AppCompatActivity() {
 
             with(apb){
                 saveBt.setOnClickListener {
+
                     val payer: Payer = Payer(
                         id = receivedPayer?.id,
                         nameEt.text.toString(),

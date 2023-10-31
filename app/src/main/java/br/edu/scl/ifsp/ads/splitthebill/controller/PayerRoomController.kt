@@ -12,7 +12,7 @@ import br.edu.scl.ifsp.ads.splitthebill.view.MainActivity
 
 class PayerRoomController(private val mainActivity: MainActivity) {
     private val payerDaoImpl: PayerRoomDao by lazy {
-        val MIGRATION_3_4: Migration = object : Migration(3,4){
+   /*     val MIGRATION_3_4: Migration = object : Migration(3,4){
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("PRAGMA foreign_keys=off;")
                 db.execSQL("DROP TABLE payer")
@@ -24,13 +24,13 @@ class PayerRoomController(private val mainActivity: MainActivity) {
                         "balanco REAL NOT NULL" +
                         ");")
             }
-    }
+    }*/
 
         Room.databaseBuilder(
             mainActivity,
             PayerRoomDaoDatabase::class.java,
             PAYER_DATABASE_FILE
-        ).addMigrations(MIGRATION_3_4)
+        )//.addMigrations(MIGRATION_3_4)
             .build().getPayerRoomDao()
     }
 
