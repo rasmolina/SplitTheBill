@@ -83,7 +83,7 @@ class PayerRoomController(private val mainActivity: MainActivity) {
     fun atualizarBalanco(){
         val listaAtual = payerDaoImpl.retrievePayers()
 
-        var totalGeral = listaAtual.sumByDouble { it.valorPago }
+        var totalGeral = listaAtual.sumOf { it.valorPago }
         val qtdPessoas = listaAtual.size
         val totalPorPessoa = totalGeral / qtdPessoas
         listaAtual.forEach{ payer ->

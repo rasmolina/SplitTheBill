@@ -56,6 +56,7 @@ class PayerActivity : AppCompatActivity() {
                         nameEt.text.toString(),
                         itemCompraEt.text.toString(),
                         valorPagoEt.text.toString().toDouble(),
+                        //calcular balanço aqui - outro controller?
                         0.0
                     )
 
