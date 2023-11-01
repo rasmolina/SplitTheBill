@@ -13,6 +13,8 @@
         android:textStyle="bold"
         android:textSize="30sp" />
 
+
+
     <TextView
         android:id="@+id/valorPagoTextView"
         android:layout_width="match_parent"

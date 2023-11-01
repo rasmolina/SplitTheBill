@@ -41,7 +41,22 @@ class PayerAdapter ( context: Context,
 
         with(payerTileView?.tag as TilePayerHolder) {
             nameTextView.text = payer.name
-            valorPagoTextView.text = "Gastou: R$ " + payer.valorPago.toString()
+
+            var totalGasto :Double = 0.0
+            with(totalGasto){
+                if(payer.itemCompra.isNotEmpty()) {
+                    totalGasto += payer.valorPago
+                }
+                if(payer.itemCompra2.isNotEmpty()) {
+                    totalGasto += payer.valorPago2
+                }
+                if(payer.itemCompra3.isNotEmpty()) {
+                    totalGasto += payer.valorPago3
+                }
+            }
+
+
+            valorPagoTextView.text = "Gastou: R$ $totalGasto"
 
             if (payer.balanco < 0.0) {
                 payer.balanco = (payer.balanco * -1)

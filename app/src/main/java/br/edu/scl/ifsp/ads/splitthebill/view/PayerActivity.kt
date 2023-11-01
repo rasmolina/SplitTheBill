@@ -32,6 +32,13 @@ class PayerActivity : AppCompatActivity() {
                 nameEt.isEnabled = false
                 itemCompraEt.setText(_receivedPayer.itemCompra)
                 valorPagoEt.setText(_receivedPayer.valorPago.toString())
+
+                itemCompra2Et.setText(_receivedPayer.itemCompra2)
+                valorPago2Et.setText(_receivedPayer.valorPago2.toString())
+
+                itemCompra3Et.setText(_receivedPayer.itemCompra3)
+                valorPago3Et.setText(_receivedPayer.valorPago3.toString())
+
                 balancoEt.setText(_receivedPayer.balanco.toString())
             }
 
@@ -41,6 +48,10 @@ class PayerActivity : AppCompatActivity() {
                     nameEt.isEnabled = false
                     itemCompraEt.isEnabled = false
                     valorPagoEt.isEnabled = false
+                    itemCompra2Et.isEnabled = false
+                    valorPago2Et.isEnabled = false
+                    itemCompra3Et.isEnabled = false
+                    valorPago3Et.isEnabled = false
                     balancoEt.isEnabled = false
                     saveBt.visibility = View.GONE
                 }
@@ -50,12 +61,19 @@ class PayerActivity : AppCompatActivity() {
 
             with(apb){
                 saveBt.setOnClickListener {
+                    if(valorPagoEt.text.isEmpty()) valorPago2Et.setText("0.0")
+                    if(valorPago2Et.text.isEmpty()) valorPago2Et.setText("0.0")
+                    if(valorPago3Et.text.isEmpty()) valorPago3Et.setText("0.0")
 
                     val payer: Payer = Payer(
                         id = receivedPayer?.id,
                         nameEt.text.toString(),
                         itemCompraEt.text.toString(),
+                        itemCompra2Et.text.toString(),
+                        itemCompra3Et.text.toString(),
                         valorPagoEt.text.toString().toDouble(),
+                        valorPago2Et.text.toString().toDouble(),
+                        valorPago3Et.text.toString().toDouble(),
                         //calcular balanço aqui - outro controller?
                         0.0
                     )
