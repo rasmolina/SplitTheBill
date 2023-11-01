@@ -13,10 +13,11 @@ import br.edu.scl.ifsp.ads.splitthebill.databinding.TilePayerBinding
 import br.edu.scl.ifsp.ads.splitthebill.model.Payer
 
 class PayerAdapter ( context: Context,
-    private val payerList: MutableList<Payer>):ArrayAdapter<Payer>(context, R.layout.tile_payer, payerList) {
+                     private val payerList: MutableList<Payer>):ArrayAdapter<Payer>(context, R.layout.tile_payer, payerList) {
 
     private data class TilePayerHolder(
         val nameTextView: TextView,
+        val itensComprados: TextView,
         val valorPagoTextView: TextView,
         val balanceteTextView: TextView
     )
@@ -35,25 +36,32 @@ class PayerAdapter ( context: Context,
             payerTileView = tpb.root
 
             val tilePayerHolder =
-                TilePayerHolder(tpb.nomeTextView, tpb.valorPagoTextView, tpb.balanceteTextView)
+                TilePayerHolder(tpb.nomeTextView, tpb.itensCompradosTextView, tpb.valorPagoTextView, tpb.balanceteTextView)
             payerTileView.tag = tilePayerHolder
         }
 
         with(payerTileView?.tag as TilePayerHolder) {
             nameTextView.text = payer.name
 
+            var itens :String = ""
+
             var totalGasto :Double = 0.0
             with(totalGasto){
                 if(payer.itemCompra.isNotEmpty()) {
                     totalGasto += payer.valorPago
+                    itens = payer.itemCompra
                 }
                 if(payer.itemCompra2.isNotEmpty()) {
                     totalGasto += payer.valorPago2
+                    itens = itens + ";" + payer.itemCompra2
                 }
                 if(payer.itemCompra3.isNotEmpty()) {
                     totalGasto += payer.valorPago3
+                    itens = itens + ";" + payer.itemCompra3
                 }
             }
+
+            itensComprados.text = itens
 
 
             valorPagoTextView.text = "Gastou: R$ $totalGasto"
